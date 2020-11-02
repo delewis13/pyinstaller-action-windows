@@ -45,7 +45,10 @@ if [ -f requirements.txt ]; then
     pip install -r requirements.txt
 fi # [ -f requirements.txt ]
 
-
+cd src/listener
+rm __init__.py
+python build_cython.py build_ext --inplace
+cd ../..
 
 # if [[ "$@" == "" ]]; then
 pyinstaller --clean -y --dist ./dist/windows --workpath /tmp $SPEC_FILE
